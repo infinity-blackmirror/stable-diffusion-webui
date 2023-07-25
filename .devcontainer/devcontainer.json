@@ -1,5 +1,10 @@
 {
-	"image": "mcr.microsoft.com/vscode/devcontainers/base:jammy",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "cuda"
+		}
+	},
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"configureZshAsDefaultShell": true
@@ -9,6 +14,9 @@
 	"updateContentCommand": "nix develop --build --impure",
 	"mounts": [
 		"source=nix,target=/nix,type=volume"
+	],
+	"runArgs": [
+		"--gpus=all"
 	],
 	"customizations": {
 		"vscode": {
